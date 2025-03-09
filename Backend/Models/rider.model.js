@@ -67,7 +67,7 @@ const riderSchema = new mongoose.Schema({
 
 riderSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {expiresIn: '24h'});
-    response.status(200).json({token})
+    return token;
 }
 
 riderSchema.methods.comparePassword = async function (password) {

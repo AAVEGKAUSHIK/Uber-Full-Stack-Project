@@ -34,8 +34,13 @@ export const registerRider = async (req, res) => {
         capacity: vehicle.capacity,
         vehicleType: vehicle.vehicleType
     })
+    await Rider.save();
 
-    const token = Rider.generateAuthToken()
+    const token = await Rider.generateAuthToken()
 
     res.status(200).json({token, Rider})
+}
+
+export const loginRider = async (req, res) => {
+    
 }
