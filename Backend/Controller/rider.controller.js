@@ -1,12 +1,12 @@
 import RiderModel from "../Models/rider.model.js";
-import bcrypt from 'bcrypt'
 import {validationResult} from 'express-validator'
 import CreateRider from '../Service/rider.service.js'
 
 export const registerRider = async (req, res) => {
 
     const errors = validationResult(req);
-        
+    console.log(errors);
+    
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array() });
     }
@@ -23,19 +23,17 @@ export const registerRider = async (req, res) => {
         return res.status(400).json({ errors: [{ message: "Rider already exists" }] });
     }
     
-    const hashedPassword = RiderModel.hashPassword(password)
+    const hashedPassword = await RiderModel.hashPassword(password)
 
     const Rider = await CreateRider({
         firstname: fullname.firstname,
         lastname: fullname.lastname, 
         email,
         password: hashedPassword,
-        vehicle: {
-            color: vehicle.color,
-            plate: vehicle.plate,
-            capacity: vehicle.capacity,
-            vehicleType: vehicle.vehicleType
-        }
+        color: vehicle.color,
+        plate: vehicle.plate,
+        capacity: vehicle.capacity,
+        vehicleType: vehicle.vehicleType
     })
 
     const token = Rider.generateAuthToken()

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import { response } from 'express';
 
 const riderSchema = new mongoose.Schema({
     fullname: {
@@ -65,8 +66,8 @@ const riderSchema = new mongoose.Schema({
 })
 
 riderSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY, {expiresIn: '24h'});
-    return token;
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {expiresIn: '24h'});
+    response.status(200).json({token})
 }
 
 riderSchema.methods.comparePassword = async function (password) {
