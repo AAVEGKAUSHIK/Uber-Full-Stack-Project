@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import userModel from './user.model.js';
+import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 const riderSchema = new mongoose.Schema({
@@ -77,5 +77,5 @@ riderSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password, 10)
 }
 
-const Rider = mongoose.model('Rider', riderSchema);
-export default Rider;
+const RiderModel = mongoose.model('Rider', riderSchema);
+export default RiderModel;
