@@ -5,7 +5,6 @@ import CreateRider from '../Service/rider.service.js'
 export const registerRider = async (req, res) => {
 
     const errors = validationResult(req);
-    console.log(errors);
     
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array() });
@@ -20,7 +19,7 @@ export const registerRider = async (req, res) => {
     const isRiderAlreadyExists = await RiderModel.findOne({email});
 
     if(isRiderAlreadyExists){
-        return res.status(400).json({ errors: [{ message: "Rider already exists" }] });
+        return res.status(400).json({message: "Rider already exists"});
     }
     
     const hashedPassword = await RiderModel.hashPassword(password)
@@ -38,5 +37,5 @@ export const registerRider = async (req, res) => {
 
     const token = Rider.generateAuthToken()
 
-    res.status(200).json(token, Rider)
+    res.status(200).json({token, Rider})
 }
