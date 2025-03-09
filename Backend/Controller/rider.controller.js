@@ -42,5 +42,32 @@ export const registerRider = async (req, res) => {
 }
 
 export const loginRider = async (req, res) => {
-    
+
+    const errors = validationResult(req);
+        
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {email, password} = req.body;
+
+    if(!email || !password) {
+        return res.status(400).json({message: "Please fill required fields"})
+    }
+    const Rider = await RiderModel.findOne({email}).select("+password")
+
+    if(!Rider) {
+        return res.status(400).json({message: "Rider doesn't exist"})
+    }
+
+    const isPasswordMatch = await Rider.comparePassword(password)
+
+    if(!isPasswordMatch) {
+        return res.status(400).json({message: "Invalid Email or Password"})
+    }
+
+    const token = Rider.generateAuthToken();
+
+    res.cookie("Token", token);
+    res.status(200).json({token, Rider})
 }
