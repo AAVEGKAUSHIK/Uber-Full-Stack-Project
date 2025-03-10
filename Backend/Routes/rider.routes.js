@@ -1,6 +1,6 @@
 import {Router} from 'express'
 import { body } from 'express-validator'
-import { loginRider, logoutRider, registerRider } from '../Controller/rider.controller.js'
+import { getRiderProfile, loginRider, logoutRider, registerRider } from '../Controller/rider.controller.js'
 const Routes = Router()
 
 Routes.post("/register", [
@@ -19,5 +19,7 @@ Routes.post("/login", [
 ], loginRider)
 
 Routes.post("/logout", logoutRider)
+
+Routes.get("/rider-profile", getRiderProfile)
 
 export default Routes

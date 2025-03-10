@@ -76,3 +76,7 @@ export const logoutRider = async (req, res) => {
     res.clearCookie("Token");
     res.status(200).json({ message: "Rider Logged out successfully" });
 }
+
+export const getRiderProfile = async (req, res)  => {
+        res.status(200).json(req.rider);
+}
