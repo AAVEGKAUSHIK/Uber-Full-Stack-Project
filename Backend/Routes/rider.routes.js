@@ -1,6 +1,6 @@
 import {Router} from 'express'
 import { body } from 'express-validator'
-import { loginRider, registerRider } from '../Controller/rider.controller.js'
+import { loginRider, logoutRider, registerRider } from '../Controller/rider.controller.js'
 const Routes = Router()
 
 Routes.post("/register", [
@@ -17,5 +17,7 @@ Routes.post("/login", [
     body("email").isEmail().withMessage("Invalid Email"),
     body("password").isLength({ min: 8 }).withMessage("Password must be 8 character long")
 ], loginRider)
+
+Routes.post("/logout", logoutRider)
 
 export default Routes
