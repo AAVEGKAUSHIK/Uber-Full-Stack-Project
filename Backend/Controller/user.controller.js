@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
     res.status(201).json({ token, user });
 };
 
-export const login = async(req, res) => {
+export const loginUser = async(req, res) => {
 
     const errors = validationResult(req);
     

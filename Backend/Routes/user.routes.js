@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {body} from "express-validator";
-import {registerUser, login, logout, getUserProfile} from "../Controller/user.controller.js";
+import {registerUser, loginUser, logout, getUserProfile} from "../Controller/user.controller.js";
 import {authUser} from "../Middlewares/Auth.middleware.js";
 const routes = Router();
 
@@ -15,7 +15,7 @@ routes.post("/register", [
 routes.post('/login', [
     body('email').isEmail().withMessage("Invalid Email"),
     body('password').isLength({min: 3}).withMessage("Password should be atleast 3 characters long")
-], login)
+], loginUser)
 
 routes.post('/logout', logout)
 
