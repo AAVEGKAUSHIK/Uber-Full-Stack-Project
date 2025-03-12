@@ -9,10 +9,12 @@ const UserLogin = () => {
     
     const submithandler = (e) => {
         e.preventDefault()
-        setuserData = {
+        console.log(email, password);
+        
+        setuserData({
             email: email,
             password: password
-        }
+        })
         console.log(userData);
         
         setEmail('')
@@ -32,7 +34,7 @@ const UserLogin = () => {
                 <h2 for="email" className='text-2xl font-semibold mt-5'>Password </h2>
                 <input className='mt-3 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} name="password" required/>
 
-                <button  className='w-full text-white text-xl h-13 px-5 bg-black mt-7 rounded-2xl'>Continue</button>
+                <button onClick={() => submithandler()} className='w-full text-white text-xl h-13 px-5 bg-black mt-7 rounded-2xl'>Continue</button>
             </form>
             <div className='mt-5 flex items-center justify-center'>
                 <p>New to Uber ? <Link className='text-blue-600' to={'/signup'}>Register here</Link></p>
