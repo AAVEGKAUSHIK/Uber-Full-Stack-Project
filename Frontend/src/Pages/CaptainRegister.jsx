@@ -30,11 +30,15 @@ const CaptainRegister = () => {
                 Capacity: vehicleCapacity
             }
           })
-          console.log(CaptainData);
-          
-          setEmail('')
-          setPassword('')
-  
+        console.log(CaptainData);
+        setFirstname('')
+        setLastname('')
+        setEmail('')
+        setPassword('')
+        setVehicleColor('')
+        setVehicleNumber('')
+        setVehicleType('')
+        setVehicleCapacity('')
       }
   return (
     <div className=''>
@@ -47,7 +51,7 @@ const CaptainRegister = () => {
             <div className='flex justify-center items-center gap-2'>
                 <div className=''>
                     <h2 for="firstname" className='text-2xl font-semibold'>Firstname</h2>
-                    <input className='mt-1 p-5 font-semibold font-sans w-full border-none h-13 rounded-xl bg-gray-300' type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} id="email" placeholder="Firstname" name="Firstname" required/>
+                    <input className='mt-1 p-5 font-semibold font-sans w-full border-none h-13 rounded-xl bg-gray-300' type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} id="firstname" placeholder="Firstname" name="Firstname" required/>
                 </div>
                 <div className=''>
                     <h2 for="email" className='text-2xl font-semibold mt-5'>Lastname </h2>
@@ -69,10 +73,10 @@ const CaptainRegister = () => {
                 <input className='mt-1 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="password" placeholder='Vehicle color' value={vehicleColor} onChange={(e) => setVehicleColor(e.target.value)} name="Color" required/>
 
                 <h2 for="Password" className='text-2xl font-semibold mt-5'>Vehicle Plate Number </h2>
-                <input className='mt-1 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="VehicleNumber" placeholder='Vehicle color' value={password} onChange={(e) => setVehicleNumber(e.target.value)} name="Vehicle Number" required/>
+                <input className='mt-1 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="VehicleNumber" placeholder='Vehicle color' value={vehicleNumber} onChange={(e) => setVehicleNumber(e.target.value)} name="Vehicle Number" required/>
 
                 <h2 for="Vehicle Type" className='text-2xl font-semibold mt-5'>Vehicle Type </h2>
-                <select onChange={(e) => setVehicleType(e.target.value)} className='w-full p-3 rounded-xl mt-3 border-2' name="" id="">
+                <select onChange={(e) => setVehicleType(e.target.value)} value={vehicleType} className='w-full p-3 rounded-xl mt-3 border-2' name="" id="">
                     <option autoFocus value="">--Select--</option>
                     <option value={'Car'}>Car</option>
                     <option value={'Auto'}>Auto</option>
@@ -80,7 +84,7 @@ const CaptainRegister = () => {
                 </select>
 
                 <h2 for="Capacity" className='text-2xl font-semibold mt-5'>Vehicle Capacity </h2>
-                <input className='mt-1 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="password" placeholder='Vehicle color' value={vehicleCapacity} onChange={(e) => setVehicleCapacity(e.target.value)} name="Capacity" required/>
+                <input className='mt-1 p-5 font-semibold w-full border-none h-13 rounded-xl bg-gray-300'  type="text" id="password" placeholder='Vehicle Capacity' value={vehicleCapacity} onChange={(e) => setVehicleCapacity(e.target.value)} name="Capacity" required/>
             </div>
 
                 <button onClick={() => submithandler()} className='w-full text-white text-xl h-13 px-5 bg-black mt-7 rounded-2xl'>Continue</button>
